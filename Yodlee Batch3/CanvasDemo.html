@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas Demo</title>
+    <style>
+        a{
+            margin:5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Canvas, a new Element in HTML5</h1>
+    <p>
+        Canvas is an element inside HTML5 to create 2D and 3D graphics Images. Unlike Images, they are created at runtime with some JS logic and at design all U see is a white element. Typically Canvas is like White board on which programmers draw the content using Scripting languages. The logic of developing the Image is dependent on the requirements of the client. There are some 3rd party tools that can be used for developing these 2D and 3D images.
+    </p>
+    <div>
+        <h3>How it works?</h3>
+        <p>
+            For working with Canvas object, U need a drawing meterial called Context Object. The Context Object is the one which contains the drawing elements required to draw on the white board(Canvas). U first need to create this object which is determined whether U want to create a 2D Graphic or a 3D Graphic Image. The Context object is used to define how U wish to draw the image on the Canvas. <br />
+            Later we use the Javascript APIs that refer to many GDI objects like Pens, Brushes, bitmaps and soforth to draw on the Canvas thro the Context Object. 
+        </p>
+    </div>
+    <div>
+        <h2>Canvas Demo...</h2>
+        <canvas id="myCanvas" width="300" height="300"></canvas>
+        <p>
+            No of Sides:<input type="number" id="txtSides" value="" min="3" max="10" />
+        </p>
+        <p>
+            Radius of the Image:<input type="number" id="txtRadius" value="" min="100" max="300" step="10" />
+        </p>
+        <button id="btnCreate">Generate</button><br />
+    </div>
+    <script>
+        var canvas;
+        var context;
+
+        function init() {
+            var btn = document.getElementById('btnCreate');
+            btn.addEventListener('click', drawImage);
+
+            canvas = document.getElementById('myCanvas');
+            context = canvas.getContext('2d');
+        }
+
+        function drawImage() {
+            var sides = document.getElementById('txtSides').value;
+            var radius = document.getElementById('txtRadius').value;
+            var xCenter = parseInt(canvas.width/2);
+            var yCenter = parseInt(canvas.height / 2);
+            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.beginPath();
+            var xPos = xCenter + radius * Math.cos(2 * Math.PI * 0 / sides);
+            var yPos = yCenter + radius * Math.sin(2 * Math.PI * 0 / sides);
+            for (var i = 1; i <= sides; i++) {
+                xPos = xCenter + radius * Math.cos(2 * Math.PI * i / sides);
+                yPos = yCenter + radius * Math.sin(2 * Math.PI * i / sides);
+                context.lineTo(xPos, yPos);//Draws the line from the origin to the points specified before moving the origin to the new points. 
+            }
+            context.closePath();
+            context.lineWidth = 10;
+            context.lineJoin = "round";
+            context.stroke();//Draws the completed Image....
+            context.fillStyle = "Blue";//Brush to draw the background
+            context.fill();//Paint the background with the filled Color. 
+        }
+        window.addEventListener('load', init);
+    </script>
+    <a href="LocalStorage.html">Using Local Storages</a>
+    <a href="FirstDemo.html">Home page</a>
+</body>
+</html>

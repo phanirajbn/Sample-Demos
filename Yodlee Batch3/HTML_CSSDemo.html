@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Using CSS with HTML</title>
+    <link href="CSSDemo.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>All U need to know about CSS and HTML</h1>
+    <a href="#">Home</a>
+    <a href="#">Projects</a>
+    <a href="#">About Us</a>
+    <a href="#">Contact Us</a>
+    <article>
+        <header>
+            <h2>About CSS3.0</h2>
+        </header>
+        <section>
+            <p> CSS 3.0 is a new way of formatting UR Content of HTML pages in a simplified and easy manner. CSS Contains one or more selectors thro which U could apply the styles for the Elements. A Style typically contains a block of formatting features that U wish to incorporate into the elements. Styles can be set inline, external or internal. Preferably go for External Styling unless U R working with dynamic content which is to be generated at Runtime.</p>
+        </section>
+    </article>
+    <article>
+        <header>
+            <h2>How to apply CSS 3.0</h2>
+        </header>
+        <section>
+            <p>
+                Styles can be applied as
+                <ul>
+                    <li>Inline Styles: U could provide inline styles scoped to the element that U R declaring. U could use the element's style attribute to set the styles each seperated by a (semi-colon);</li>
+                    <li>Internal Styles: Styles could set within the Head Tag using Style element. This contains the styles U wish to apply on all the elements of UR Document and will be scoped for the document itself. Styles are not object oriented, so must refer them explicitly</li>
+                    <li>External Styles: The Most prefered way of styling the Application, where U could create an Extenal file with an Extension .css and link it using the link tag. U could create different types of styles using class attribute.</li>
+                </ul>
+            </p>
+        </section>
+    </article>
+    <article>
+        <header>
+            <h2>Using Selectors</h2>
+        </header>
+        <section>
+            <p>Selectors are the main part of the CSS document. Selectors associate the style to a single or a group of elements that U wish to style. Even wild charecters are used to associate the elements. * us used to obtain the references of all the elements within the HTML page. padding is used to provide the gap for the elements within the document. We can also use margin to set the thin gap between the container and the content of the HTML elements.</p>
+        </section>
+        <section>
+            <h3>Positions in CSS:</h3>
+            <p>
+                There are 4 types of Positions that could be set for the HTML 5 elements. They determine on how the elements impact on the corresponding elements of the Document.The Positions are:
+                <ol>
+                    <li>Static: Its the default position for the elements. It positions itself as defined in the HTML page. </li>
+                    <li>Relative: Positions itself based on the previous or the next element that it is associated with. It might impact the positioning on the other elements that are lined in the HTML Document</li>
+                    <li>Absolute: It positions itself to a fixed width, height and size and does not take into consideration about the other elements that are placed beside it.</li>
+                    <li>Fixed: Makes the element non movable and will be there at a constant point even if the page is scrolled. This is typically required if U want to retain the element on all conditions.</li>
+                </ol>
+            </p>
+        </section>
+    </article>
+    <h1>More features</h1>
+    <article>
+        <h3>About CSS Classes...</h3>
+        <p>CSS Classes allow to provide common style to a group of elements irrespective of the type. Typically required for getting the elements which are child to other elements.<br />
+        A CSS class is created with a . followed by the name of the class with the block that contains the style. Elements who wish to use the Class can refer it using the attribute class. Class helps in generalizing the style to child elements within the Container.
+        </p>
+    </article>
+    <article class="display">
+        <p>Some Content here....</p>
+    </article>
+    <article>
+        <p>Some Content here....</p>
+    </article>
+    <article>
+        <p>Some Content here....</p>
+    </article>
+</body>
+</html>

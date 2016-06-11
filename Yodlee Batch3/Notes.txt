@@ -1,0 +1,11 @@
+HTML 5 Training Notes
+Features of HTML5
+New Graphics Features
+Audio and Video Features
+Web Forms 2.0 with all new Features
+Drag Drop Operations in HTML5 Pages.
+Features to store data on the client side using Local storages.
+Store large data thro relational tables using Web Storages which are limited to certain browsers. 
+Geolocation Features which could allow U to display data in UR apps relative to the End user locations.
+To develop HTML5 Apps, U need a Text Editor and a Browser to view the Web Content. 
+To generate the Dynamic content U should use Client side scripting Components called Javascript. To provide styles to UR Application, we will use CSS. 

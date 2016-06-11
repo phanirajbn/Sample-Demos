@@ -1,0 +1,57 @@
+<!DOCTYPE Html>
+<Html>
+	<head>
+		<title>Locate me!!!!!</title>
+	</head>
+	<body>
+		<h1>Using Geolocation Features of HTML5</h1>
+		<div>
+			<p>
+				Geolocation APIs are new features introduced in HTML5 to use the GOOGLE APIs to get the latitude and the longitude of the the user and display the info appropriately. But for the success of this, there are various Factors
+				<ol>
+					<li>U must be connected to Internet</li>
+					<li>The User should provide permissions for the Google APIs to locate U.</li>
+					<li>Accuracy is based on various factors liek GPS, WIFI, EDGE, Connectivity options....</li>
+					<li>We use GOOGLE APIs to get the info about the Maps and display them as static or dynamic Content</li>
+				</ol>
+			</p>
+			<p>	
+			<h2>Locate Me...</h2>
+			<button id="btnLocate">Catch me if U can</button>
+			<div id="display"/>
+			</p>
+		</div>
+		<a href="DragDropDemo.html">DragDropDemo</a>
+		<script>
+			function init(){
+				document.getElementById('btnLocate').addEventListener('click', displaylocation);	
+			}
+			function displaylocation(){
+				//Code for using the HTML5's geolocation APIs.....
+				if(navigator.geolocation){
+					alert("Now, getting the location.....");
+					navigator.geolocation.getCurrentPosition(display, errorInfo);		
+				}else{
+				alert("Change UR Browser to HTML Compatible one.....");				
+				}
+			}
+			function display(position){
+				var loc = position.coords.latitude +"," + position.coords.longitude;
+				var img = "http://maps.googleapis.com/maps/api/staticmap?center=" + loc +"&size=400x400&zoom=15&sensor=false";
+				document.getElementById('display').innerHTML = "<img src='" + img +"'/>";
+			}
+			function errorInfo(error){
+				switch(error.code){
+					case error.PERMISSION_DENIED:
+					alert("Yoddle has not provided permission for google to locate");
+					break;
+					case error.POSITION_UNABLE:
+					alert("Please check UR Internet connection");
+					break;
+				}
+			}
+			window.addEventListener('load', init);
+		</script>
+	</body>
+	<a href="Exersise.html">Try this before to U take a break</a>
+</Html>

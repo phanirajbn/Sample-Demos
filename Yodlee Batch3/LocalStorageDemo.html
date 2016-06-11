@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Using Local Storages</title>
+</head>
+<body>
+    <h1>Using Local Storages and Session Data.</h1>
+    <div>
+        Local Storages are a new Feature of HTML5 to store small text based information in the browser for consuming it later. This will avoid the usage of Server side code which is required to store text based information in the form of cookies and Session. Session is an unique interaction between UR Browser instance and the Server that hosts the Web Application. These objects need HTTPOBJECT to store and load them which is done thro Server side scripting. 
+        <p>
+            With the new HTML5, U can do all these things using Client side Programming. Local storages store the data in the form of Text only. The Local Storage has the scope for a long time, usually an year within the browser. Even if the Browser is closed after storing, the local data will remain so in the local storage.
+        </p>
+        <p>
+            If U want to store the data for an individual User and only for the session, the U can store it as sessionData based on Session Storage. The Session is lost if the Browser is closed. Even if the browser is idle for more than the speculated intervel of time, the Session is lost. Session can also be lost if the user gets redirected to another web site and he tries to come back using HISTORY Navigation.
+        </p>
+        <p>
+            <h3>Advantages of using local Storages</h3>
+            <ul>
+                <li>
+                    The data is domain specific, Programmers from one domain cannot access it from another domain unless done manually by the User himself.
+                </li>
+                <li>U could store upto 5 MB of data which is much larger than cookie storage</li>
+                <li>Once created, U dont need to send this information for every HttpRequests U make to the server. It can be retrieved explicitly thro APIs rather than HTTP Objects which are traversed for all user interactions from the client to the server</li>
+                <li>The local storage is supported for many browsers:Chrome4+, IE8+...</li>
+            </ul>
+        </p>
+    </div>
+    <div>
+        <p>
+        Enter some data to store:
+            <input type="text" id="txtContent" value="" required /><br />
+            <button id="btnStore">Store Data</button>
+        </p>
+        <p>
+            <button id="btnRetrieve">Read Data</button>
+            <div id="divDisplay"/>
+        </p>
+    </div>
+    <h1>Session Storages</h1>
+    <p>
+        Session Storages are used to store the information relative to the individual Session. A Session Storage will be removed once the session is closed. If U want to store small information that could last for the duration of the current interaction, U could go for Session Storage which is done thro an object called sessionStorage
+    </p>
+    <div>
+        <p>
+            The no of times this page is visited in the current session is:
+            <div id="sessionData"/>
+        </p>
+    </div>
+    <a href="HTML_CSSDemo.html">Learn CSS 3.0</a>
+    <a href="FirstDemo.html">Home Page</a>
+    <script>
+        function setData() {
+            var data = document.getElementById('txtContent').value;
+            localStorage.setItem("MyData", data);
+            alert("Data is stored");
+        }
+        function getData() {
+            var data = localStorage.getItem("MyData");
+            alert("Data is being retrieved");
+            document.getElementById('divDisplay').innerHTML = data;
+        }
+        function init() {
+            document.getElementById('btnStore').addEventListener('click', setData);
+            document.getElementById('btnRetrieve').addEventListener('click', getData);
+
+            if (window.sessionStorage) {
+                var no = 0;
+                if (sessionStorage.visits) {
+                    no = parseInt(sessionStorage.getItem('visits'));
+                    no++;
+                    sessionStorage.visits = no;
+                } else {
+                    no = 1;
+                    sessionStorage.visits = no;
+                }
+                document.getElementById('sessionData').innerHTML = no;
+            }else
+                alert("Upgrade to the latest browser that supports HTML5");
+        }
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
