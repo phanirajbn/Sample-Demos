@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Data</title>
+    <style>
+        *{
+            padding:3px;
+            margin:5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>JSON Data</h1>
+    <article>
+        <header>
+            <h3>What is JSON?</h3>
+        </header>
+        <section>
+            <p>JSON is a simple way of presenting data to the User Interface Applications as Javascript objects. Its a std defined for xchanging the data between different Platforms. Unlike XML you dont need parsers or provide any kind of Schemas to view them. They simply represent the data in form of var. This is called Javascript Object Notation.</p>
+            <p>
+                JSON is a pure Text based data Presentation. It does not need any high end protocols for data Transfer. Its used very much for transfering data from the Web Services which are exposed as RESTFull Services. Representational State Transfer is a mechanism of sharing the Service data thro simplier formats like JSON and XML. 
+            </p>
+            <div>
+                <h2>Enter the Employee Details:</h2>
+                <p>
+                    Enter the Name:<input type="text" id="txtName" value="" />
+                </p>
+                <p>
+                    Enter the Address:<input type="text" id="txtAddress" value="" />
+                </p>
+                <p>
+                    Enter the Salary:<input type="text" id="txtSalary" value="" />
+                </p>
+                <button id="btnSave">Save JSON</button>
+                </div>
+            <div>
+                <button id="btnShow">Show JSON</button>
+                <p id="pDisplay"/>
+            </div>
+        </section>
+    </article>
+    <script>
+        function init() {
+            var btn = document.getElementById('btnSave');
+            btn.addEventListener('click', createEmployee);
+
+            var btnRead = document.getElementById('btnShow');
+            btnRead.addEventListener('click', readEmployee);
+        }
+        //Store the data as JSON object
+        function createEmployee() {
+            var name = document.getElementById('txtName').value;
+            var address = document.getElementById('txtAddress').value;
+            var salary = document.getElementById('txtSalary').value;
+            var jSonObj = { "EmpName": name, "EmpAddress": address, "EmpSalary": salary };
+            alert(jSonObj);
+            var strContent = JSON.stringify(jSonObj);
+            //Data is converted into a String format...
+            alert(strContent);
+            localStorage.setItem("JSON", strContent);
+            return strContent;
+        }
+        //Read the JSON Object later...
+        function readEmployee() {
+            var strJSON = localStorage.getItem("JSON");
+            var jSonObj = JSON.parse(strJSON);
+            document.getElementById('pDisplay').innerHTML = "The Name is " + jSonObj.EmpName + "<br/>The Address is " + jSonObj.EmpAddress + "<br/>The Salary is " + jSonObj.EmpSalary;
+        }
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>

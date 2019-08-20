@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Web Forms 2.0</title>
+	</head>
+	<body>
+		<h1>HTML5 Web Forms Demo</h1>
+		<article>
+			<header>
+				<h2> Enroll for the new Training</h2>
+			</header>
+			<section>
+				<fieldset>
+					<ul>
+						<li>
+							<label>Enter the name:</label>
+							<input type="text" id="txtName" required placeholder="Type UR Name here"/>
+						</li>
+						<li>
+							<label>Enter the EMail:</label>
+							<input type="email" id="txtEmail" required placeholder="Type UR EMail here"/>
+						</li>
+						<li>
+							<label>Enter the Age:</label>
+							<input type="number" id="txtAge" required 
+							min="20" max="45"/>
+						</li>
+						<li>
+						<label>Select the location</label>
+						<input type="text" id="txtLocation" required list="places"/>
+						<datalist id="places">
+						<option label="Bangalore" value="Bangalore"/>
+						<option label="Mysore" value="Mysore"/>
+						<option label="Chennai" value="Chennai"/>
+						<option label="Noida" value="Noida"/>
+						</li>
+					<li>
+						<label>Enter the Date of Join</label>
+						<input type="date" id="txtDate" required/>
+					</li>
+					<li>
+						<label>Select the Course</label>
+						<select id="courseSelection">
+							<option value="JavaTraining">Java Training</option>
+							<option value="CSharp">C# Training</option>
+							<option value="CPlusPlus">C++ Training</option>
+							<option value="MongoDB">DB Training</option>
+						</select>
+					</li>
+					<li>
+						<label>
+						At Last lets know UR Exitement on learning our courses....
+						</label>
+						<input type="range" id="txtRange" min="1" max="10"/>
+					</li>
+					</ul>
+				</fieldset>
+				<input type="submit" id="btnSubmit" value="Register"/>
+			</section>
+			<div id="divDetails"/>
+			<a href="GeoLocationDemo.html">GeoLocationDemo</a>
+		</article>
+		<p>
+			The new way of Scripting is called as UNOBTRUSIVE JAVASCRIPT. In this case, there will be clean seperation of HTML elements and Scripting elements. Unlike previous versions, U will not add any JS Code in the HTML elements even as Event handlers. 
+		</p>
+		<script>
+			function init(){
+				var btn = document.getElementById('btnSubmit');
+				btn.addEventListener('click', getData);
+			}
+			function getData(){
+				var name = document.getElementById('txtName');
+				var email = document.getElementById('txtEmail');
+				var excitement = document.getElementById('txtRange');
+				var display = document.getElementById('divDetails');
+				display.innerHTML = "Thanks for Enrolling with us. UR Name is " + name.value +"<br/>THe Email ID is " + email.value;
+			}
+			window.addEventListener('load', init);
+		</script>
+	</body>
+</html>

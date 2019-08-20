@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Drag Drop Opertaion</title>
+</head>
+<body>
+    <h2>Drag Drop Features of HTML5</h2>
+    <div>
+        HTML allows the dragging and droping of the content from one part of the page to another, The element that is supposed to be dragged must be set with the attribute called Draggable to true. This Feature will help to create Web Portal Apps. The element on which the draggable object is droped must be set with an attribute called allowDrop to true. U R going to use Javascript to handle the Drag drop events of the DOM elements.
+        <p>
+            The important events are OnDrop and onDragOver. The Dragging object must handle an event called onDragStart. The onDrop is triggered when the object is droped into the droppable element, the onDragOver is invoked while the object is moved on the dropping element.
+        </p> 
+    </div>
+    <div>
+        <h2>Drag Drop Operations.....</h2>
+        <img id="dragObj" ondragstart="drag(event)" draggable="true" src="logo2.jpg" width="200" height="200" />
+    </div>
+    <div id="dragLoc" ondragover="allowDrop(event)" ondrop="drop(event)" style="border:solid red 3px; width:200px; height:300px"></div>
+    <a href="CanvasDemo.html">Create Graphical Images</a>
+    <script>
+        function allowDrop(event) {
+            event.preventDefault();//This function makes the DOM element not to handle the default behavior of the element, instead prompting the Programmer to handle it.
+        }
+        function drag(event) {
+            event.dataTransfer.setData("Text", event.target.id);
+        }
+        function drop(event) {
+            var data = event.dataTransfer.getData("Text");
+            event.target.appendChild(document.getElementById(data));
+        }
+    </script>
+</body>
+</html>

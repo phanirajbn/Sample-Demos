@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Working with JSON Array</title>
+    <style>
+        *{
+            background-color:lightgoldenrodyellow;
+            padding:5px;
+            margin:5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Employee Monitoring System</h1>
+    <a href="#" id="aDisplay">Display All</a>
+    <a href="#" id="aAddRec">Add New</a>
+    <a href="#" id="aDelete">Delete</a>
+    <div id="divTable">
+        <table id="tblData" border="1">
+            <tr>
+                <td>Employee ID</td>
+                <td>Employee Name</td>
+                <td>Employee Address</td>
+                <td>Employee Salary</td>
+                <td>Options</td>
+            </tr>
+        </table>
+    </div>
+    <div id="divAdd">
+        <h2>Insert new Employee</h2>
+        <p>
+            Enter the Emp ID:<input type="number" id="txtID" value="" /><br />
+            Enter the Emp Name:<input type="text" id="txtName" value="" /><br />
+            Enter the Email Address:<input type="text" id="txtAddress" value="" /><br />
+            Enter the Emp Salary:<input type="number" id="txtSalary" value="" /><br />
+            <button id="Save">Add Record</button>
+        </p>
+    </div>
+    <script src="jquery-2.1.4.min.js"></script>
+    <script>
+        var employees = [
+            {"EmpID":123, "Empname":"Phaniraj","EmpAddress":"Bangalore", "EmpSalary":45000},
+            { "EmpID": 124, "Empname": "Banu Prakash", "EmpAddress": "Hyderabad", "EmpSalary": 35000 },
+            { "EmpID": 125, "Empname": "Amardeep", "EmpAddress": "Chandigarh", "EmpSalary": 40000 }
+        ];
+        function deleteRecord() {
+            $(".delete").click(function () {
+                var id = $(this).parent().siblings("td").first().html();
+                alert(id);
+                var stringData = localStorage.getItem("List");
+                var collection = JSON.parse(stringData);
+                for (var i = 0; i < collection.length; i++) {
+                    if(collection[i].EmpID == id)
+                    {
+                        alert("Emp found to delete");
+                        collection[i] = null;
+                        stringData = JSON.stringify(collection);
+                        localStorage.setItem("List", stringData);
+                        return;
+                    }
+                }
+            });
+        }
+        function displayTable() {
+            $("#aDisplay").click(function () {
+                $("#divTable").fadeIn(1000);
+                $("#tblData").find("tr:gt(0)").remove();
+                var stringData = localStorage.getItem("List");
+                var data = JSON.parse(stringData);
+                $.each(data, function (i, v) {
+                    var row = "<tr><td>";
+                    row += v.EmpID + "</td><td>";
+                    row += v.Empname + "</td><td>";
+                    row += v.EmpAddress + "</td><td>";
+                    row += v.EmpSalary + "</td><td>";
+                    row += "<a href='#' class='delete'>Delete</a></td></tr>";
+                    $("#tblData").append(row);
+                });
+                deleteRecord();
+            });
+        }
+        function insertRecord() {
+            $("#aAddRec").click(function () {
+                $("div").fadeOut(1000);
+                $("#divAdd").fadeIn(1000);
+                $("#Save").click(function () {
+                    var empID = $("#txtID").val();
+                    var empName = $("#txtName").val();
+                    var empAddress = $("#txtAddress").val();
+                    var empSalary = $("#txtSalary").val();
+                    var empObj = { "EmpID": empID, "Empname": empName, "EmpAddress": empAddress, "EmpSalary": empSalary };
+                    //First get the Current list
+                    var currentList = localStorage.getItem("List");
+                    var data = JSON.parse(currentList);
+                    //append the List with the new record
+                    data[employees.length] = empObj;
+                    //set it back to the Employees list.
+                    employees = data;
+                    //Store it back to the localStorage
+                    localStorage.setItem("List", JSON.stringify(employees));
+                    alert("Employee addd successfully to the database");
+                    $("#divAdd").fadeOut(1000);
+                });
+            });
+        }
+        
+        $(document).ready(function () {
+            var array = JSON.stringify(employees);
+            localStorage.setItem("List", array);
+            $("div").fadeOut(1000);
+            displayTable();
+            insertRecord();
+        });
+    </script>
+</body>
+</html>

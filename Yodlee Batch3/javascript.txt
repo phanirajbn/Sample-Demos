@@ -1,0 +1,53 @@
+Creating Variables:
+Use var to declare the variables in JS. U could declare multiple variables in the same line. Variables could be global or locally scoped. 
+switch..case
+switch(variable){
+case condition:
+break;
+default:
+	//dont need break here.
+}
+Passing values from the user
+Displaying the Result
+Math Calculator
+Creating a Class
+var emp = new Object();
+        emp.EmpName = "Phaniraj";
+        emp.EmpAddress = "Bangalore";
+        function display() {
+            alert(emp.EmpName + "\n" + emp.EmpAddress);
+        }
+        window.addEventListener('load', display);
+///////////////////////////////Object thro Function///////////////////////////////
+        function addSalary(amount) {
+            this.Salary = amount;
+        }
+        function Employee(empID, empName, empAddress) {
+            this.EmpID = empID;
+            this.EmpAddress = empAddress;
+            this.EmpName = empName;
+            this.AddSalary = addSalary;
+        }
+
+        var emp = new Employee(123, 'Phaniraj', 'Bangalore');
+        emp.AddSalary(123);
+        alert(emp.Salary);		
+Creating an Object and settings values
+Creating Arrays
+var fruits =['Apple','Mango','Orange'];
+Creating Array of Objects
+ var employees = [new Employee(123, 'Phaniraj', 'Bangalore'), new Employee(124, 'Banu Prakash', 'Mysore'), new Employee(125, 'Vinod', 'Shimoga'), ];
+        function displayAll() {
+            for (i = 0; i < 3; i++)
+                alert(employees[i].EmpName);
+        }
+Inserting record
+employees.push(new Employee(126, 'Joy', 'Kolkatta'));
+            for (i = 0; i < employees.length; i++)
+                alert(employees[i].EmpName);
+Deleting Record:
+employees.splice(3, 1);//Removes the item at index 3 by 1
+            for (i = 0; i < employees.length; i++)
+                alert(employees[i].EmpName);
+
+Displaying in a Table.
